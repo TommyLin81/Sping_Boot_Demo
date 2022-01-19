@@ -1,0 +1,53 @@
+server:
+ port: 8001
+ servlet:
+  context-path: /demo
+
+spring:
+ # Database
+ datasource:
+  url: jdbc:mysql://mysql:3306/demo?useUnicode=true&characterEncoding=utf-8&socketTimeout=60000&connectTimeout=30000&useSSL=false&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true
+  username: test
+  password: test
+  driver-class-name: com.mysql.cj.jdbc.Driver
+ jpa:
+  database: mysql
+  database-platform: org.hibernate.dialect.MySQL5Dialect
+  show-sql: true
+  open-in-view: true
+  properties.hibernate.connection.release_mode: AUTO
+  hibernate.ddl-auto: validate
+
+ # Flyway
+ flyway:
+  url: jdbc:mysql://mysql:3306/demo?useUnicode=true&characterEncoding=utf-8&socketTimeout=60000&connectTimeout=30000&useSSL=false&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true
+  user: test
+  password: test
+  locations: classpath:db/migration
+  table: flyway_schema_history
+  baseline-on-migrate: true
+  baseline-version: 1.0
+  out-of-order: true
+  validate-on-migrate: true
+  enabled: true
+
+ # Redis
+ redis:
+   database: 0
+   host: redis
+   port: 6379
+   password:
+   timeout: 1000
+   jedis:
+    pool:
+     max-active: 8
+     max-wait: -1
+     max-idle: 8
+     min-idle: 0
+
+
+# Custom properties
+v1API: "/api/v1"
+
+
+
